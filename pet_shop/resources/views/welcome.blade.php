@@ -1,19 +1,17 @@
 @extends('app')
 @section('header')
     <nav class="bg-white shadow-sm border-b border-stone-100">
-        <div class="max-w-7x1 mx-auto px-4 h-16 flex items-center justify-between">
-            <div class="flex items-cneter space-x-8">
-                <div class="text-2x1 font-bold text-orange-400">BaanPets Logo</div>
-                <a href="#" class="text-stone-600 hover:text-orange-400 transition">關於BaanPet</a>
-                <a href="#" class="text-stone-600 hover:text-orange-400 transition">好評推薦</a>
-                <a href="#" class="text-stone-600 hover:text-orange-400 transition">狗狗專區</a>
-                <a href="#" class="text-stone-600 hover:text-orange-400 transition">貓貓專區</a>
-                <a href="#" class="text-stone-600 hover:text-orange-400 transition">最新消息</a>
-                <a href="#" class="text-stone-600 hover:text-orange-400 transition">知識分享</a>
-                <a href="#" class="text-stone-600 hover:text-orange-400 transition">銷售據點</a>
-            </div>
-            <!-- 右側：功能區(搜尋、登入、購物車) -->
-            <div class="flex items-center space-x-5">
+        <div class="w-full mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex-shrink-0 text-2xl font-bold text-orange-400">BaanPets Logo</div>
+            <a href="#" class="text-stone-600 hover:text-orange-400 transition">關於BaanPet</a>
+            <a href="#" class="text-stone-600 hover:text-orange-400 transition">好評推薦</a>
+            <a href="#" class="text-stone-600 hover:text-orange-400 transition">狗狗專區</a>
+            <a href="#" class="text-stone-600 hover:text-orange-400 transition">貓貓專區</a>
+            <a href="#" class="text-stone-600 hover:text-orange-400 transition">最新消息</a>
+            <a href="#" class="text-stone-600 hover:text-orange-400 transition">知識分享</a>
+            <a href="#" class="text-stone-600 hover:text-orange-400 transition">銷售據點</a>
+                <!-- 右側：功能區(搜尋、登入、購物車) -->
+        <div class="flex items-center space-x-5">
             <!-- 1. 搜尋圖標 (放大鏡) -->
              <button class="text-stone-500 hover:text-orange-400 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" fil="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -57,8 +55,19 @@
 {{-- 填入 content 的洞 --}}
 @section('content')
     <section class="relative bg-orange-50 overflow-hidden">
-        <div class="max-w-7x1 mx-auto px-4 py-16 flex items-center">
-            <h1 class="text-4x1 font-bold">歡迎來到首頁</h1>
+        {{-- x-data 告訴Alpine：這裡是一個元件，active 代表當前的圖片索引 --}}
+        <div x-data="{ active: 0, slides: 3}" class="relative h-[500px] w-full group">
+            <!-- 1. 圖片容器 -->
+            <div class="relative h-full overflow-hidden">
+                 <!-- 第一張圖 -->
+                <div x-show="active === 0"x-transition.opacity.duration.500ms class="absolute inset-0 bg-orange-100 flex items-center justify-center">
+                    <div class="text-center">
+                        <h1 class="text-5xl font-bold text-stone-800 mb-4">
+                         給毛孩最溫暖的居家呵護   
+                        </h1>
+                    </div>
+                </div>  
+            </div>
         </div>
     </section>
 @endsection
