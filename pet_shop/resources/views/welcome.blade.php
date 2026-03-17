@@ -54,20 +54,33 @@
 @endsection
 {{-- 填入 content 的洞 --}}
 @section('content')
-    <section class="relative bg-orange-50 overflow-hidden">
-        {{-- x-data 告訴Alpine：這裡是一個元件，active 代表當前的圖片索引 --}}
-        <div x-data="{ active: 0, slides: 3}" class="relative h-[500px] w-full group">
-            <!-- 1. 圖片容器 -->
-            <div class="relative h-full overflow-hidden">
-                 <!-- 第一張圖 -->
-                <div x-show="active === 0"x-transition.opacity.duration.500ms class="absolute inset-0 bg-orange-100 flex items-center justify-center">
-                    <div class="text-center">
-                        <h1 class="text-5xl font-bold text-stone-800 mb-4">
-                         給毛孩最溫暖的居家呵護   
-                        </h1>
-                    </div>
-                </div>  
-            </div>
+    <section class="relative bg-orange-50 overflow-hidden"
+       x-data="{active:0,slides:
+                [{title:'給毛孩最溫暖的居家呵護', color: 'bg-orange-100'},
+                {title: '精選寵物零食，健康又美味', color: 'bg-orange-200'},
+                { title: '舒適寵物床，夢幻睡眠品質', color: 'bg-amber-100' }
+                ]}"
+                x-init="setInterval(()=> { active = (active + 1) % slides.length}, 3000)">
+        <div class="relative h-[500px] w-full">
+            <!-- 這裡變成迴圈，自動生成每一張圖的結構 -->
+            <template x-for="(slide, index) in slides" :key="index">
+               <div x-show="active === index"
+                    x-transition.opacity.duration.500ms
+                    class="absolute inset-0 flex items-center justify-center"
+                    :class="slide.color">
+                    <h1 class="text-5xl font-bold text-stone-800 mb-4"x-text="slide.title"></h1>
+                </div> 
+            </template> 
         </div>
+        <!-- 左箭頭 -->
+         <button @click="active = (active - 1 + slides.length) % slides.length"
+                class="absolute top-1/2 left-4  p-2 rounded-full hover:bg-white transition"><
+          </button> 
+          <!-- 右箭頭 -->
+        <button @click="active = (active + 1) % slides.length"
+               class="absolute top-1/2 right-4  p-2 rounded-full hover:bg-white transition">
+          >
+        </button>   
     </section>
+    
 @endsection
