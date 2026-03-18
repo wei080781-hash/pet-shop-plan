@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BaanPets 後台管理系統</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="bg-stone-50 font-sans text-stone-800" x-data="{ sidebarOpen: true }">
+    <!-- 側邊欄 (Sidebar) -->
+    <aside :class="sidebarOpen ? 'w-64' : 'w-20'" 
+           class="fixed left-0 top-0 h-full bg-stone-800 text-stone-300 transition-all duration-300 z-50 overflow-hidden">
+        
+        <!-- Logo 區域 -->
+        <div class="h-16 flex items-center px-6 border-b border-stone-700">
+            <span class="text-orange-400 font-bold text-2xl tracking-wider" x-show="sidebarOpen">BaanPets</span>
+            <span class="text-orange-400 font-bold text-2xl mx-auto" x-show="!sidebarOpen">B</span>
+        </div>
+
+        <!-- 導航連結 -->
+        <nav class="mt-6 px-4 space-y-2">
+            <!-- 儀表板 -->
+            <a href="/admin/dashboard" class="flex items-center p-3 rounded-lg hover:bg-stone-700 hover:text-white transition group bg-stone-700 text-white">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span class="ml-4 whitespace-nowrap" x-show="sidebarOpen">後台儀表板</span>
+            </a>
+
+            <!-- 輪播圖片管理 -->
+            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-stone-700 hover:text-white transition group">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span class="ml-4 whitespace-nowrap" x-show="sidebarOpen">輪播圖片管理</span>
+            </a>
+
+            <!-- 商品管理 -->
+            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-stone-700 hover:text-white transition group">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+                <span class="ml-4 whitespace-nowrap" x-show="sidebarOpen">商品與價格</span>
+            </a>
+
+            <!-- 文章管理 -->
+            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-stone-700 hover:text-white transition group">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z" />
+                </svg>
+                <span class="ml-4 whitespace-nowrap" x-show="sidebarOpen">文章與內容</span>
+            </a>
+
+            <!-- 訂單檢視 -->
+            <a href="#" class="flex items-center p-3 rounded-lg hover:bg-stone-700 hover:text-white transition group relative">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+                <span class="ml-4 whitespace-nowrap" x-show="sidebarOpen">訂單資料庫</span>
+                <span class="absolute right-2 top-3 w-2 h-2 bg-orange-400 rounded-full" x-show="sidebarOpen"></span>
+            </a>
+        </nav>
+        
+        <!-- 下方設定/登出 (暫留位) -->
+        <div class="absolute bottom-0 w-full p-4 border-t border-stone-700">
+            <a href="/" class="flex items-center p-3 rounded-lg hover:bg-stone-700 hover:text-white transition group">
+                <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span class="ml-4 whitespace-nowrap" x-show="sidebarOpen">回到官網</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- 主要內容區 (Main Content) -->
+    <main :class="sidebarOpen ? 'ml-64' : 'ml-20'" class="transition-all duration-300 min-h-screen">
+        <!-- 頂部 Header -->
+        <header class="h-16 bg-white border-b border-stone-200 flex items-center justify-between px-8 sticky top-0 z-40">
+            <button @click="sidebarOpen = !sidebarOpen" class="text-stone-500 hover:text-orange-400 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+            <div class="flex items-center space-x-6">
+                <span class="text-stone-400 text-sm">2026/03/18 星期三</span>
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-400 font-bold text-xs">A</div>
+                    <span class="font-medium text-stone-700">管理員 威利</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 視圖內容 -->
+        <div class="p-8">
+            @yield('admin_content')
+        </div>
+    </main>
+</body>
+</html>
