@@ -18,6 +18,7 @@
      </main>
      <footer>
     {{-- 頁尾內容 --}}
+    @yield('footer')
      </footer>
 </body>
 </html>
