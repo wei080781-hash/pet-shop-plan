@@ -183,4 +183,100 @@
     </div>
 </div>
 
+<!-- 回到頂部按鈕 -->
+<div x-data="{ showTop: false }" 
+     x-init="window.addEventListener('scroll', () => { showTop = window.pageYOffset > 400 })"
+     class="fixed bottom-8 right-8 z-50">
+    <button x-show="showTop" 
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-10"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-300"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 translate-y-10"
+            @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+            class="bg-orange-400 hover:bg-orange-500 text-white p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300 group"
+            aria-label="回到頂部">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 group-hover:-translate-y-1 transition-transform">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+        </svg>
+    </button>
+</div>
+
+@endsection
+
+@section('footer')
+<footer class="bg-stone-800 text-stone-300 py-16">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
+        <!-- 品牌簡介 -->
+        <div class="space-y-6">
+            <h4 class="text-2xl font-bold text-orange-400">BaanPets</h4>
+            <p class="text-sm leading-relaxed">
+                Baan 在泰語中意為「家」。我們致力於為毛孩打造一個充滿愛與舒適的居家環境，精選自然皮革與環保材質，讓每位寵物都能感受到家的溫度。
+            </p>
+            <div class="flex space-x-4 pt-2">
+                <!-- Facebook Icon -->
+                <a href="#" class="hover:text-orange-400 transition">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                </a>
+                <!-- Instagram Icon -->
+                <a href="#" class="hover:text-orange-400 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                </a>
+                <!-- LINE Icon -->
+                <a href="#" class="hover:text-orange-400 transition">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.185 1.039.646 1.281-.538 6.915-4.071 9.428-6.968 1.728-1.921 2.571-3.954 2.571-5.99zm-16.792 3.616h-1.62c-.179 0-.324-.145-.324-.324v-3.793c0-.179.145-.324.324-.324h1.62c.179 0 .324.145.324.324v3.793c0 .179-.145.324-.324.324zm3.12 0h-1.62c-.179 0-.324-.145-.324-.324v-3.793c0-.179.145-.324.324-.324h1.62c.179 0 .324.145.324.324v3.793c0 .179-.145.324-.324.324zm3.626 0c0 .179-.145.324-.324.324h-1.503c-.179 0-.324-.145-.324-.324v-3.793c0-.179.145-.324.324-.324h1.503c.179 0 .324.145.324.324v3.793zm3.763 0h-1.62c-.179 0-.324-.145-.324-.324v-3.793c0-.179.145-.324.324-.324h1.62c.179 0 .324.145.324.324v3.793c0 .179-.145.324-.324.324z"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- 快速連結 -->
+        <div>
+            <h5 class="text-white font-bold mb-6 tracking-widest uppercase text-sm">探索 BaanPets</h5>
+            <ul class="space-y-4 text-sm">
+                <li><a href="#" class="hover:text-orange-400 transition">關於我們</a></li>
+                <li><a href="#" class="hover:text-orange-400 transition">所有商品</a></li>
+                <li><a href="#" class="hover:text-orange-400 transition">會員中心</a></li>
+                <li><a href="#" class="hover:text-orange-400 transition">最新消息</a></li>
+            </ul>
+        </div>
+
+        <!-- 顧客服務 -->
+        <div>
+            <h5 class="text-white font-bold mb-6 tracking-widest uppercase text-sm">顧客服務</h5>
+            <ul class="space-y-4 text-sm">
+                <li><a href="#" class="hover:text-orange-400 transition">常見問題</a></li>
+                <li><a href="#" class="hover:text-orange-400 transition">運送政策</a></li>
+                <li><a href="#" class="hover:text-orange-400 transition">退換貨政策</a></li>
+                <li><a href="#" class="hover:text-orange-400 transition">隱私權條款</a></li>
+            </ul>
+        </div>
+
+        <!-- 聯絡我們 -->
+        <div class="space-y-4">
+            <h5 class="text-white font-bold mb-6 tracking-widest uppercase text-sm">聯絡我們</h5>
+            <p class="text-sm">
+                台北市信義區寵物路 123 號<br>
+                週一至週五 10:00 - 19:00
+            </p>
+            <p class="text-sm">
+                Email: service@baanpets.com<br>
+                Tel: (02) 2345-6789
+            </p>
+        </div>
+    </div>
+
+    <!-- 版權聲明 -->
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-8 mt-16 pt-8 border-t border-stone-700 text-xs flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-stone-500">
+        <p>© 2026 BaanPets Co., Ltd. All Rights Reserved.</p>
+        <div class="flex space-x-6">
+            <span>Designed with ♥ for Pets</span>
+            <div class="flex space-x-4 grayscale opacity-50">
+                <span class="border px-1">VISA</span>
+                <span class="border px-1">MasterCard</span>
+                <span class="border px-1">Apple Pay</span>
+            </div>
+        </div>
+    </div>
+</footer>
 @endsection
