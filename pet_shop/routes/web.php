@@ -12,7 +12,12 @@ Route::get('/', function () {
     $carousels = Carousel::orderBy('order')->get();
     $products = Product::latest()->take(6)->get();
     return view('welcome', compact('carousels', 'products'));
-});
+})->name('index');
+
+// 會員系統測試頁面
+Route::get('/auth', function () {
+    return view('auth.auth_page');
+})->name('auth.page');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
