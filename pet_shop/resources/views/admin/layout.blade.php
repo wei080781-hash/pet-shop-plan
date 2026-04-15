@@ -65,11 +65,25 @@
                 </svg>
             </button>
             <div class="flex items-center space-x-6">
-                <span class="text-stone-400 text-sm">2026/03/18 星期三</span>
-                <div class="flex items-center space-x-2">
-                    <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-400 font-bold text-xs">A</div>
-                    <span class="font-medium text-stone-700">管理員 威利</span>
+                @auth
+                <div class="relative" x-data="{ dropdownOpen: false }">
+                    <button @click="dropdownOpen = !dropdownOpen" class="flex items-center space-x-2 focus:outline-none">
+                        <div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-orange-400 font-bold text-xs">{{ Auth::user()->name[0] }}</div>
+                        <span class="font-medium text-stone-700">{{ Auth::user()->name }}</span>
+                        <svg class="w-4 h-4 text-stone-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+
+                    <div x-show="dropdownOpen" @click.away="dropdownOpen = false"
+                         class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-stone-700 hover:bg-stone-100">
+                                登出
+                            </button>
+                        </form>
+                    </div>
                 </div>
+                @endauth
             </div>
         </header>
 

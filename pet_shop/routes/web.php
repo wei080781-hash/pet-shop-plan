@@ -19,7 +19,15 @@ Route::get('/auth', function () {
     return view('auth.auth_page');
 })->name('auth.page');
 
-Route::prefix('admin')->name('admin.')->group(function () {
+use App\Http\Controllers\AuthController;
+
+// Auth Routes
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard');
     })->name('dashboard');
